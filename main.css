@@ -1,0 +1,18 @@
+.input-group.md-form.form-sm.form-2 input.amber-border {
+    border: 1px solid #ffca28;
+    margin: 2px;
+}
+
+.input-group.md-form.form-sm.form-1 input {
+    border: 1px solid #bdbdbd;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.padding {
+
+    padding: 5px;
+    padding-top: 10px;
+    margin: 5px;
+
+}

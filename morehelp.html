@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>More Help</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+
+    <body class="everything">
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4"> More Help </h1>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="fontColor">
+                    <p> Search for helpful function videos here! </p>
+                    <div id = 'search-box' > 
+                <div class="input-group md-form form-sm form-2 pl-0">
+                    <input id="search-text" class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <span class="input-group-text red lighten-3 btn" id="basic-text1"><i class="fa fa-search text-grey" aria-hidden="true">Search</i></span>
+                    </div>
+                </div>
+                    </div>
+                    <!-- <div id='search-box'>
+                        <input id="search-text" name='q' type="text" class="textbox fontColor" placeholder="Search" val="">
+                        <input id="search-button" title="Search" value="Search" type="submit"> </button>
+                    </div> -->
+             </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-sm-12">
+        <div id ="youtubeContainer">
+        </div>
+    </div>
+
+
+
+        <script>
+            $(document).ready(function () {
+                $(".btn").on('click', function () {
+
+                    var x = $("#search-text").val().trim();
+                    console.log(x);
+                    var queryURL = "https://www.googleapis.com/youtube/v3/search?part=id&q=" + x +
+                        "&type=video&key=AIzaSyChDVIewczWbA3L4t_6wizjbPo3N69i80o";
+                    $.ajax({
+                        url: queryURL,
+                        method: 'GET'
+                    }).done(function (response) {
+                        $("#youtubeContainer").empty();
+
+                        for (var i = 0; i < 5; i++) {
+                            var videoId = response.items[i].id.videoId;
+                            var youtubeDiv = $("<div>");
+                            var newVid = $("<iframe>");
+                            newVid.attr({
+                                "src": "https://www.youtube.com/embed/" + videoId,
+                                "width": "1280",
+                                "height": "720"
+                            })
+                            newVid.addClass("padding")
+
+                            youtubeDiv.append(newVid);
+
+                            $("#youtubeContainer").append(youtubeDiv);
+                        }
+                    })
+          
+                });
+            })
+        </script>
+    </body>
+
+</html>
